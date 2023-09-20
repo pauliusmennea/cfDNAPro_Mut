@@ -12,13 +12,15 @@ readMutationFile <- function(mutation_file) {
     bed <- read.table(mutation_file,
       header = TRUE,
       sep = "\t",
-      stringsAsFactors = FALSE, quote = "")
+      stringsAsFactors = FALSE, quote = NULL,
+      colClasses = c("character", "integer", "character", "character"))
   } else {
     bed <- read.table(mutation_file,
       header = FALSE,
       sep = "\t",
       stringsAsFactors = FALSE, quote = "",
-      col.names = c("chr", "pos", "ref", "alt"))
+      col.names = c("chr", "pos", "ref", "alt"),
+      colClasses = c("character", "integer", "character", "character"))
   }
 
   # Check whether the file format is correct
