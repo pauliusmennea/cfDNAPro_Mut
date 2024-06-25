@@ -5,7 +5,7 @@
 #' @import GenomicAlignments
 #' @import S4Vectors
 #' @importFrom Rsamtools scanBamFlag ScanBamParam
-#' @importFrom GenomicRanges GRanges seqnames
+#' @importFrom GenomicRanges GRanges seqnames granges
 #' @importFrom IRanges IRanges
 #'
 #' @param genome_label The Genome you used in the alignment. 
@@ -20,6 +20,8 @@
 #'    full genome sequences for Homo sapiens (Human) as provided by 
 #'    NCBI (GRCh38, 2013-12-17) and stored in Biostrings objects.
 #' @param bamfile The bam file name.
+#' @param curate_start_and_end Whether curate the alignment start and end coordinates.
+#'    Default to TRUE.
 #' @param outdir The path for saving rds file. Default is NA, i.e. not saving.
 #' @param strand_mode Usually the strand_mode  = 1 means the First read is 
 #'    aligned to positive strand. Details please see GenomicAlignments docs.
@@ -50,6 +52,7 @@
 
 readBam <- function(
                      bamfile,
+                     curate_start_and_end = TRUE,
                      use_names = TRUE,
                      chromosome_to_keep = paste("chr", 1:22, sep = ""),
                      strand_mode = 1,
@@ -123,11 +126,23 @@ readBam <- function(
   # Curate starts and ends 
   ############################################################################
   
+  if (curate_start_and_end){
+    
+    
   fragmentwise <- curate_start_and_end(galp = galp) 
   
   names(fragmentwise) <- names(galp)
   seqlengths(fragmentwise) <- seqlengths(genome)[1:22]
   genome(fragmentwise) <- genome_name
+    
+    
+  } else {
+    
+    message("Skipped curating start and end coordinates.")
+    fragmentwise <- granges(galp)
+    
+  }
+  
   
   #############################################################################
   # remove out-of-bound reads
