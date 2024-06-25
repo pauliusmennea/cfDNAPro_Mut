@@ -7,20 +7,13 @@
 callMotif(
   fragment_obj,
   genome_label = "hg19",
+  integrate_mut = FALSE,
   motif_type = "s",
   motif_length = 3L,
   ...
 )
 }
 \arguments{
-\item{fragment_obj}{}
-
-\item{genome_label}{}
-
-\item{motif_type}{}
-
-\item{motif_length}{}
-
 \item{...}{}
 }
 \value{

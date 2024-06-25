@@ -6,7 +6,8 @@
 \usage{
 plotCNV(
   x,
-  gene_to_highlight = list(ENTREZID = NULL, ENSEMBL = NULL, SYMBOL = c("EGFR", "ERBB2")),
+  mut_gr,
+  gene_to_highlight = list(ENTREZID = NULL, ENSEMBL = NULL, SYMBOL = c("TTC34")),
   genome = "hg19",
   ylim = c(-2, 2),
   chromosome = c(seq(1, 22, 1), "X"),
@@ -27,11 +28,14 @@ plotCNV(
   legend_position = "none",
   x_axis_expand = c(0.1, 0.1),
   y_axis_expand = c(0, 0),
+  text_size = 1.6,
   ...
 )
 }
 \arguments{
 \item{x}{QDNAseqCopyNumbers object}
+
+\item{mut_gr}{optional GRanges fragment/mutation object to overlap with CN}
 
 \item{gene_to_highlight}{A named list.}
 
@@ -39,7 +43,7 @@ plotCNV(
 
 \item{ylim}{vector. default is c(-2, 2).}
 
-\item{chromosome}{vector, default is c(seq(1, 22, 1), "X").}
+\item{chromosome}{vector. default is c(seq(1, 22, 1), "X").}
 
 \item{point_color}{named vector}
 
@@ -73,6 +77,8 @@ plotCNV(
 
 \item{y_axis_expand}{numerical vector. default is c(0, 0).}
 
+\item{text_size}{numerical. relevant when mut_gr is provided. default is 1.6.}
+
 \item{...}{Other params to geom_txt_repel()}
 }
 \value{
@@ -86,7 +92,6 @@ plot copy number profile
 
 p <- plotCNV(bamfile = "/path/to/bamfile.bam")
 }
-
 }
 \author{
 Haichao Wang

@@ -9,6 +9,7 @@ plotMotif(
   ylim,
   x_title = "Motif",
   plot_type = c("Fraction"),
+  integrate_mut = FALSE,
   bar_color = c(A = "cornflowerblue", C = "darksalmon", G = "palevioletred2", T =
     "forestgreen"),
   motif_levels = c("C", "G", "A", "T"),
@@ -16,18 +17,6 @@ plotMotif(
 )
 }
 \arguments{
-\item{x}{}
-
-\item{ylim}{}
-
-\item{x_title}{}
-
-\item{plot_type}{}
-
-\item{bar_color}{}
-
-\item{motif_levels}{}
-
 \item{...}{}
 }
 \value{

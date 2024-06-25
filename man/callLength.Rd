@@ -4,14 +4,16 @@
 \alias{callLength}
 \title{call fragment length}
 \usage{
-callLength(fragment_obj, isize_min = 1L, isize_max = 1000L, ...)
+callLength(
+  fragment_obj,
+  fragment_type = "default",
+  isize_min = 1L,
+  isize_max = 1000L,
+  ...
+)
 }
 \arguments{
-\item{fragment_obj}{}
-
-\item{isize_min}{}
-
-\item{isize_max}{}
+\item{fragment_type}{String; "default", "mut_vs_ref", "mut_vs_outer", "mut_vs_ref_norm", "mut_vs_outer_norm"}
 
 \item{...}{}
 }

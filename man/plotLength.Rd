@@ -26,8 +26,6 @@ plotLength(
 \arguments{
 \item{x}{}
 
-\item{plot_type}{}
-
 \item{xlim}{}
 
 \item{ylim}{}

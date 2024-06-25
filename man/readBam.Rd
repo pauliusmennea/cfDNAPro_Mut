@@ -18,52 +18,73 @@ readBam(
   galp_what = c("cigar", "mapq", "isize"),
   galp_tag = c("NM", "MD"),
   galp_mapqFilter = 30,
+  mutation_file = NULL,
+  mut_fragments_only = FALSE,
+  call_mutations = FALSE,
+  pileup_max_depth = 1000,
+  pileup_min_base_quality = 10,
+  pileup_min_nucleotide_depth = 3,
+  pileup_min_minor_allele_depth = 3,
+  pileupYieldSize = 3e+05,
   ...
 )
 }
 \arguments{
 \item{bamfile}{The bam file name.}
 
-\item{curate_start_and_end}{Whether curate the alignment start and end coordinates.
-Default to TRUE.}
+\item{curate_start_and_end}{A logical (TRUE or FALSE) parameter
+for curating alignment start and end coordinates.
+The default value is TRUE.}
 
-\item{use_names}{}
-
-\item{chromosome_to_keep}{Should be a character vector containing the 
-seqnames to be kept in the GRanges object or boolean FALSE. FALSE means not filtering.
+\item{chromosome_to_keep}{Should be a character vector containing the
+seqnames to be kept in the GRanges object or boolean FALSE.
+FALSE means not filtering.
 Default is paste0("chr", 1:22).}
 
-\item{strand_mode}{Usually the strand_mode  = 1 means the First read is 
-aligned to positive strand. Details please see GenomicAlignments docs.}
+\item{strand_mode}{The strand_mode = 1 means
+the strand of the pair is strand of its first alignment.
+For More Details please see GenomicAlignments docs.}
 
-\item{genome_label}{The Genome you used in the alignment. 
-Should be "hg19" or "hg38" or "hg38-NCBI". Default is "hg19". 
-Note: "hg19" will load BSgenome.Hsapiens.UCSC.hg19 package, which is 
-Full genome sequences for Homo sapiens (Human) as provided by 
-UCSC (hg19, based on GRCh37.p13) and stored in Biostrings objects; 
-"hg38" will load BSgenome.Hsapiens.UCSC.hg38 package, which is 
-Full genome sequences for Homo sapiens (Human) as provided by 
+\item{genome_label}{The Genome you used in the alignment.
+Should be "hg19" or "hg38" or "hg38-NCBI". Default is "hg19".
+Note: "hg19" will load BSgenome.Hsapiens.UCSC.hg19 package, which is
+Full genome sequences for Homo sapiens (Human) as provided by
+UCSC (hg19, based on GRCh37.p13) and stored in Biostrings objects;
+"hg38" will load BSgenome.Hsapiens.UCSC.hg38 package, which is
+Full genome sequences for Homo sapiens (Human) as provided by
 UCSC (hg38, based on GRCh38.p13) and stored in Biostrings objects.
-"hg38-NCBI" will load BSgenome.Hsapiens.NCBI.GRCh38 package, which is 
-full genome sequences for Homo sapiens (Human) as provided by 
+"hg38-NCBI" will load BSgenome.Hsapiens.NCBI.GRCh38 package, which is
+full genome sequences for Homo sapiens (Human) as provided by
 NCBI (GRCh38, 2013-12-17) and stored in Biostrings objects.}
 
 \item{outdir}{The path for saving rds file. Default is NA, i.e. not saving.}
 
-\item{galp_flag}{}
+\item{galp_what}{A character vector naming the fields to return
+Rsamtools::scanBamWhat() returns a vector of available fields.
+Fields are described on the Rsamtools::scanBam help page.}
 
-\item{galp_what}{A character vector naming the fields to return 
-Rsamtools::scanBamWhat() returns a vector of available fields. Fields are 
-described on the Rsamtools::scanBam help page.}
+\item{mutation_file}{An optional file containing a list of mutations.
+Fragments that overlap the mutation loci are mutationally annotated.}
 
-\item{galp_tag}{}
+\item{mut_fragments_only}{A logical (TRUE or FALSE) parameter
+that determines the type of genomic alignments
+to retrieve from the BAM file.
+If set to TRUE, the function will only retrieve alignments
+that overlap with specified mutation locations.
+If set to FALSE, it will retrieve all alignments
+that pass the selected filters.
+The default value is FALSE.}
 
-\item{galp_mapqFilter}{}
+\item{call_mutations}{A logical (TRUE or FALSE) parameter
+that indicates whether RSamtools::pileup should be used
+to generate a list of Single-Base-Substitutions (SBS)
+that will be used to mutationally annotate the fragments.
+The default value is FALSE.}
 
 \item{...}{Further arguments passed to or from other methods.}
 }
 \value{
-This function returns curated GRanges object.
+This function returns a curated GRanges object.
 }
 \description{
 Read bam file into a curated GRanges object
@@ -71,7 +92,7 @@ Read bam file into a curated GRanges object
 \examples{
 \dontrun{
 
-object <- readGALP(bamfile = "/path/to/bamfile.bam", 
+object <- readGALP(bamfile = "/path/to/bamfile.bam",
                    outdir = "./",
                    chromosome_to_keep = c("chr1", "chr2", "chr3"))
 }
@@ -79,4 +100,6 @@ object <- readGALP(bamfile = "/path/to/bamfile.bam",
 }
 \author{
 Haichao Wang
+
+Paulius D. Mennea
 }
