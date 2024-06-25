@@ -60,7 +60,7 @@ plotTrinucleotide <- function(trinuc_df,
   )
 
   # Step 2: Plot the processed data
-  plotTrinucData(
+  p <- plotTrinucData(
     count_df = count_df_processed,
     min_y_val = min_y_val,
     max_y_val = max_y_val,
@@ -73,6 +73,7 @@ plotTrinucleotide <- function(trinuc_df,
     save_plot = TRUE,
     output_file = output_file
   )
+  return(p)
 }
 
 # Internal functions
