@@ -47,7 +47,7 @@ plotTrinucleotide <- function(trinuc_df,
                               draw_x_axis_labels = TRUE,
                               draw_y_axis_labels = TRUE,
                               draw_y_axis_title = TRUE,
-                              save_plot = TRUE,
+                              save_plot = FALSE,
                               output_file = "./trinucleotide_profile.pdf") {
 
   # Step 1: Process trinucleotide data
