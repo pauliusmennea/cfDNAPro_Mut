@@ -413,6 +413,6 @@ plotTrinucData <- function(
            device = "pdf")
   }
 
-  #return(p_output)
+  return(p_output)
 
 }
