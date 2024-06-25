@@ -28,6 +28,7 @@
 #' @param output_file String; name and path of output pdf file.
 #'
 #' @return A trinucleotide SBS plot object and an optional pdf file.
+#' @export
 #' @examples
 #' \dontrun{
 #'  plotTrinucleotide(trinuc_df)

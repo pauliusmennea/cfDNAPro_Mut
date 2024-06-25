@@ -19,6 +19,8 @@
 #'
 #' @return dataframe with summarised mutational and trinucleotide data
 #'
+#' @export
+#'
 #' @examples
 #' trinuc_df <-  callTrinucleotide(gr)
 callTrinucleotide <- function(gr) {
