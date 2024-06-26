@@ -5,7 +5,7 @@ Version: 1.7.1
 biocViews: Visualization, Sequencing, WholeGenome
 Authors@R: c(
     person("Haichao","Wang", email="hw538@cam.ac.uk", role =c("aut","cre")),
-    person("Paulius D.","Mennea", email="paulius.mennea@cam.ac.uk", role =c("cbt")),
+    person("Paulius D.","Mennea", email="paulius.mennea@cam.ac.uk", role =c("ctb")),
     person("Hui","Zhao", email="hui.zhao@cruk.cam.ac.uk", role =c("ctb")),
     person("Elkie","Chan", email="elkie.chan@cruk.cam.ac.uk", role =c("ctb")),
     person("Christopher", "Smith", email="christopher.smith@cruk.cam.ac.uk", role = c("ctb")),
